@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #4d89893e;
+    }
+     input#open {
+      display: none;
+    } 
+    
+    .greeting-card {
+      /* position: relative; */ 
+      width: 300px;
+      height:300px;
+      /* transform-style: preserve-3d; */
+        transform: perspective(0);
+      transition: .1s;
+    }
+    
+    .card-front {
+      /* position: relative; */
+      background-color: #ede0e2ca;
+      width: 300px;
+      height:300px;
+      transform-origin: left;
+      box-shadow: rgba(249px, 245px, 245px, 0.95px);
+      transition: .3s;
+    }
+    
+    .card-front:before {
+      content:"";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      background-color: #3b3535;
+      top: 10px;
+      left: 10px;
+    }
+    
+    .card-inside {
+      position: absolute;
+      background-color: #fff0f3;
+      width: 300px;
+      height:300px;
+      z-index:-1;
+      left:0;
+      top:0;
+      box-shadow: inset 100px 20px 100px rgba(0,0,0,0.22), 100px 20px 100px rgba(0,0,0,0.1);
+    }
+    
+    .open {
+      position: absolute;
+      width: 300px;
+      height:300px;
+      left:0;
+      top:0;
+      background-color: transparent;
+      z-index:6;
+      cursor: pointer;
+    }
+    
+    #open:checked ~ .card-front {
+      transform: rotateY(-155deg);
+      box-shadow: inset 100px 20px 100px rgba(0,0,0,.13), 30px 0 50px rgba(0,0,0,0.1);
+    }
+    
+    #open:checked ~ .card-front:before {
+      z-index:5;
+      background-color: #fff0f3;
+      width:300px;
+      height:300px;
+      top:0;
+      left:0;
+      box-shadow: inset 100px 20px 100px rgba(0,0,0,.1), 30px 0 50px rgba(0,0,0,0.1);
+    }
+    .note {
+      position: relative;
+      width: 200px;
+      height: 150px;
+      background-color: #fff0f3;
+      top:75px;
+      left:50px;
+      color: #333;
+      font-size:30px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      filter: drop-shadow(0 0 20px rgba(0,0,0,0.3));
+    }
+    .text-one {
+      position: absolute;
+      color: #333;
+      font-size: 30px;
+      top:30px;
+      width:300px;
+      text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div id="root"> Change is imminent!</div>
+    <script type="text/babel">
+        let rootNode = ReactDOM.createRoot(document.getElementById("root"));
+       
+        class ClassHelloProps extends React.Component{
+            render(){
+                return (
+                    <div class="greeting-card">
+           <input id="open" type="checkbox"/>
+        <label class="open" for="open"></label>
+       <div class="card-front">
+        <div class="note">Click to Open</div>
+      </div>
+        
+        <div class="card-inside">
+          <div class="text-one">Hello {this.props.name}<br/>
+               thankyou for following my link .
+          </div>
+      </div>
+      </div>
+                )
+            }
+        }
+        rootNode.render(<ClassHelloProps name="Govind Soni" age="23"/>);
+    </script>
+</body>
+</html>
